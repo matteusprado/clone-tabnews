@@ -15,6 +15,7 @@ async function query(queryObject) {
     return result
   } catch (error) {
     console.error('Error connecting to database: ', error.message, 'at', new Date().toISOString())
+    throw error
   } finally {
     await client.end()
   }
