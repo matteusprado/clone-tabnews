@@ -1,17 +1,25 @@
 import { Client } from 'pg'
 
-
 async function query(queryObject) {
-  const client = await getNewClient()
-    .catch((error) => {
-      console.error('Error connecting to database: ', error.message, 'at', new Date().toISOString())
-      throw error
-    })
+  const client = await getNewClient().catch((error) => {
+    console.error(
+      'Error connecting to database: ',
+      error.message,
+      'at',
+      new Date().toISOString(),
+    )
+    throw error
+  })
   try {
     const result = await client.query(queryObject)
     return result
   } catch (error) {
-    console.error('Error connecting to database: ', error.message, 'at', new Date().toISOString())
+    console.error(
+      'Error connecting to database: ',
+      error.message,
+      'at',
+      new Date().toISOString(),
+    )
     throw error
   } finally {
     await client.end()
@@ -28,19 +36,19 @@ async function getNewClient() {
     ssl: getSSLValues(),
   })
   await client.connect()
-  return client;
+  return client
 }
 
 function getSSLValues() {
   if (process.env.POSTGRES_CA) {
     return {
       ca: process.env.POSTGRES_CA,
-    };
+    }
   }
-  return process.env.NODE_ENV === "production" ? true : false;
+  return process.env.NODE_ENV === 'production' ? true : false
 }
 
 export default {
   query,
-  getNewClient
+  getNewClient,
 }

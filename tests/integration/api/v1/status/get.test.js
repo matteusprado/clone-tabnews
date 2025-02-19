@@ -1,7 +1,7 @@
-import orchestrator from "tests/orchestrator"
+import orchestrator from 'tests/orchestrator'
 
 beforeAll(async () => {
-  await orchestrator.waitForAllServices();
+  await orchestrator.waitForAllServices()
 })
 
 test('GET /api/status should return 200', async () => {
@@ -16,5 +16,3 @@ test('GET /api/status should return 200', async () => {
   expect(responseBody.dependencies.database.max_connections).toBe(100)
   expect(responseBody.dependencies.database.opened_connections).toBe(1)
 })
-
-

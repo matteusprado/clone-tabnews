@@ -1,8 +1,8 @@
 import database from 'infra/database'
-import orchestrator from "tests/orchestrator"
+import orchestrator from 'tests/orchestrator'
 
 beforeAll(async () => {
-  await orchestrator.waitForAllServices();
+  await orchestrator.waitForAllServices()
   await database.query('drop schema public cascade; create schema public;')
 })
 
@@ -17,5 +17,3 @@ test('GET /api/migrations should return 200', async () => {
   expect(responseBody[0].name).toBeDefined()
   expect(responseBody[0].timestamp).toBeDefined()
 })
-
-
