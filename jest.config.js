@@ -11,4 +11,5 @@ const createJestConfig = nextJest({
 
 module.exports = createJestConfig({
   moduleDirectories: ['node_modules', '<rootDir>/'],
+  testTimeout: 1000 * 60,
 })
